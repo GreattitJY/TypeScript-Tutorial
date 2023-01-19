@@ -3,7 +3,7 @@ class Person {
   firstName: string;
   lastName: string;
 
-  construnctor(ssn: string, firstName: string, lastName: string) {
+  constructor(ssn: string, firstName: string, lastName: string) {
     this.ssn = ssn;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -12,3 +12,5 @@ class Person {
     return `${this.firstName} ${this.lastName}`;
   }
 }
+
+let person = new Person("183-12-0232", "Jon", "Doe");
