@@ -38,13 +38,45 @@
 
 /* ************************* */
 
-interface StringFormat {
-  (str: string, isUpper: boolean): string;
+// interface StringFormat {
+//   (str: string, isUpper: boolean): string;
+// }
+
+// let lowerCase: StringFormat;
+// lowerCase = function (str: string) {
+//   return str.toLowerCase();
+// };
+
+// console.log(lowerCase("Hi", false));
+
+/* ************************* */
+
+interface Mailable {
+  send(email: string): boolean;
+  queue(email: string): boolean;
 }
 
-let lowerCase: StringFormat;
-lowerCase = function (str: string) {
-  return str.toLowerCase();
-};
+interface FutureMailable extends Mailable {
+  later(email: string, after: number): boolean;
+}
 
-console.log(lowerCase("Hi", false));
+class Mail implements FutureMailable {
+  later(email: string, after: number): boolean {
+    console.log(`Send email to ${email} in ${after} ms.`);
+    return true;
+  }
+  send(email: string): boolean {
+    console.log(`Sent email to ${email}`);
+    return true;
+  }
+  queue(email: string): boolean {
+    console.log(`Queue an email to ${email}`);
+    return true;
+  }
+}
+
+let mail = new Mail();
+
+mail.later("one", 3);
+mail.send("two");
+mail.queue("two");
